@@ -1,0 +1,12 @@
+gears = require("gears")
+terminal = "kitty"
+editor = os.getenv("EDITOR") or "nano"
+editor_cmd = terminal .. " -e " .. editor
+fileManager = "pcmanfm "
+modkey = "Mod4"
+shutdown = terminal .. " shutdown now"
+screenshot_gui = " flameshot gui"
+screenshot_full = " flameshot full -c"
+browser = " firefox"
+command = " pamixer --get-volume"
+awesomeDir = gears.filesystem.get_dir("config")
