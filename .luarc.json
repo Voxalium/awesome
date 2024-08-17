@@ -1,12 +1,4 @@
 {
-  "diagnostics.globals": [
-    "awesome",
-    "client",
-    "screen",
-    "root"
-  ],
-  "diagnostics.disable": [
-    "different-requires",
-    "lowercase-global"
-  ]
+  "diagnostics.globals": ["awesome", "client", "screen", "root"],
+  "diagnostics.disable": ["different-requires", "lowercase-global"]
 }

@@ -5,6 +5,7 @@ editor_cmd = terminal .. " -e " .. editor
 fileManager = "pcmanfm "
 modkey = "Mod4"
 shutdown = terminal .. " shutdown now"
+reboot = terminal .. " reboot"
 screenshot_gui = " flameshot gui"
 screenshot_full = " flameshot full -c"
 browser = " firefox"
