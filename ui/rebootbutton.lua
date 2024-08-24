@@ -1,5 +1,9 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
+local gears = require("gears")
+
+beautiful.init(awesomeDir .. "theme.lua")
+
 local myrebootmenu = awful.menu({
 	items = {
 		{ "Reboot", reboot },

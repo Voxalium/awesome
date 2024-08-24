@@ -6,7 +6,6 @@ local taglist = require("ui.taglist")
 local tasklist = require("ui.tasklist")
 local set_wallpaper = require("ui.wallpaper")
 local rebootbutton = require("ui.rebootbutton")
-beautiful.init(awesomeDir .. "theme.lua")
 
 mytextclock = wibox.widget.textclock()
 
@@ -100,10 +99,8 @@ awful.screen.connect_for_each_screen(function(s)
 		},
 	})
 end)
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 
 screen.connect_signal("property::geometry", set_wallpaper)
--- }}}
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
