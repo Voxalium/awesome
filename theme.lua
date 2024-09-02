@@ -31,7 +31,8 @@ theme.border_normal = "#000000"
 theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
 
-theme.wallpaper = awesomeDir .. "/wallpapers/archwallpaper.png"
+--theme.wallpaper = awesomeDir .. "/wallpapers/archwallpaper.png"
+theme.wallpaper = "~/Images/CATGIRL.jpg"
 
 theme.tasklist_disable_task_name = true
 
