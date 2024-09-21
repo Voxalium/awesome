@@ -5,21 +5,23 @@ local gears = require("gears")
 local taglist = require("ui.taglist")
 local tasklist = require("ui.tasklist")
 local set_wallpaper = require("ui.wallpaper")
-local rebootbutton = require("ui.rebootbutton")
 
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget{
+  format = "%A %e %B" ,
+  font = "noto bold 10",
+  widget = wibox.widget.textclock
+}
+
+local calendar = awful.widget.calendar_popup.month()
+calendar:attach(mytextclock, "tc")
 
 screen.connect_signal("property::geometry", set_wallpaper)
+beautiful.init(awesomeDir .. "theme.lua")
 
 awful.screen.connect_for_each_screen(function(s)
 	set_wallpaper(s)
 	awful.tag({ "1", "2", "3", "4" }, s, awful.layout.layouts[2])
-	s.mylayoutbox = awful.widget.layoutbox(s)
-
-	-- Create a promptbox for each screen
-	s.mypromptbox = awful.widget.prompt()
-	-- Create an imagebox widget which will contain an icon indicating which layout we're using.
-	-- We need one layoutbox per screen.
+  s.mypromptbox = awful.widget.prompt()
 	s.mylayoutbox = awful.widget.layoutbox(s)
 	s.mylayoutbox:buttons(gears.table.join(
 		awful.button({}, 1, function()
@@ -35,21 +37,14 @@ awful.screen.connect_for_each_screen(function(s)
 			awful.layout.inc(-1)
 		end)
 	))
-	-- Create a taglist widget
-	s.mytaglist = awful.widget.taglist({
-		screen = s,
-		filter = awful.widget.taglist.filter.all,
-		buttons = taglist,
-	})
+	s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist)
 
 	-- Create a tasklist widget
 	s.mytasklist = awful.widget.tasklist({
 		screen = s,
 		filter = awful.widget.tasklist.filter.currenttags,
 		buttons = tasklist,
-		layout = {
-			layout = wibox.layout.fixed.horizontal,
-		},
+		layout = { layout = wibox.layout.fixed.horizontal },
 		widget_template = {
 			{
 				{
@@ -73,6 +68,8 @@ awful.screen.connect_for_each_screen(function(s)
 			},
 			id = "background_role",
 			widget = wibox.container.background,
+			left = 10,
+			right = 10,
 		},
 	})
 
@@ -85,16 +82,17 @@ awful.screen.connect_for_each_screen(function(s)
 		layout = wibox.layout.align.horizontal,
 		{ -- Left widgets
 			layout = wibox.layout.fixed.horizontal,
+			spacing = 10,
 			--            mylauncher,
 			s.mytaglist,
 			s.mypromptbox,
+			s.mytasklist,
 		},
-		s.mytasklist, -- Middle widget
+		mytextclock, -- Middle widget
 		{ -- Right widgets
+			spacing = 10,
 			layout = wibox.layout.fixed.horizontal,
 			wibox.widget.systray(),
-			mytextclock,
-			rebootbutton,
 			s.mylayoutbox,
 		},
 	})

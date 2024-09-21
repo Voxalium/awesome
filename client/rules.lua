@@ -41,7 +41,6 @@ awful.rules.rules = {
 				"veromix",
 				"xtightvncviewer",
 				"Pcmanfm",
-				"kitty",
 				"Pavucontrol",
 			},
 
